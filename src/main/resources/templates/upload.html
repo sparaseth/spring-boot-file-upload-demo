@@ -1,0 +1,39 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<title>File Upload Demo</title>
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>File Upload Example</h1>
+    <div class="message" th:if="${message}">
+        <h2 th:text="${message}"/>
+    </div>
+    <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data" action="/">
+            <div>
+                <div>
+                    <label>File to upload:</label>
+                    <input type="file" name="file"/>
+                    <input type="submit" value="Upload"/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="file-list">
+        <table class="files">
+            <tr>
+                <th>No</th>
+                <th>File Name</th>
+                <th>Download Link</th>
+            </tr>
+            <tr th:each="uploadedFile: ${uploadedFiles}">
+                <td th:text="${uploadedFile.no}"></td>
+                <td th:text="${uploadedFile.name}"></td>
+                <td><a th:href="${uploadedFile.uri}"/>Download</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
